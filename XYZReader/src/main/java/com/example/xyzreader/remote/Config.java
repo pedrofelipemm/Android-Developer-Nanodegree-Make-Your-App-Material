@@ -5,17 +5,21 @@ import android.util.Log;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Config {
-    public static final URL BASE_URL;
+class Config {
+
     private static String TAG = Config.class.toString();
 
+    private static final String STRING_URL = "https://go.udacity.com/xyz-reader-json";
+
+    static final URL BASE_URL;
+
     static {
-        URL url = null;
+        URL url;
         try {
-            url = new URL("https://go.udacity.com/xyz-reader-json" );
-        } catch (MalformedURLException ignored) {
-            // TODO: throw a real error
-            Log.e(TAG, "Please check your internet connection.");
+            url = new URL(STRING_URL);
+        } catch (MalformedURLException e) {
+            Log.d(TAG, "Could not parse url: " + STRING_URL, e);
+            throw new IllegalStateException(e);
         }
 
         BASE_URL = url;

@@ -3,8 +3,9 @@ package com.example.xyzreader.data;
 import android.net.Uri;
 
 public class ItemsContract {
-	public static final String CONTENT_AUTHORITY = "com.example.xyzreader";
-	public static final Uri BASE_URI = Uri.parse("content://com.example.xyzreader");
+    private static final Uri BASE_URI = Uri.parse("content://com.example.xyzreader");
+
+    static final String CONTENT_AUTHORITY = "com.example.xyzreader";
 
 	interface ItemsColumns {
 		/** Type: INTEGER PRIMARY KEY AUTOINCREMENT */
@@ -27,16 +28,16 @@ public class ItemsContract {
 		String PUBLISHED_DATE = "published_date";
 	}
 
-	public static class Items implements ItemsColumns {
-		public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.com.example.xyzreader.items";
-		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.com.example.xyzreader.items";
+    public static class Items implements ItemsColumns {
+        static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.com.example.xyzreader.items";
+        static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.com.example.xyzreader.items";
 
-        public static final String DEFAULT_SORT = PUBLISHED_DATE + " DESC";
+        static final String DEFAULT_SORT = PUBLISHED_DATE + " DESC";
 
 		/** Matches: /items/ */
-		public static Uri buildDirUri() {
-			return BASE_URI.buildUpon().appendPath("items").build();
-		}
+        static Uri buildDirUri() {
+            return BASE_URI.buildUpon().appendPath("items").build();
+        }
 
 		/** Matches: /items/[_id]/ */
 		public static Uri buildItemUri(long _id) {

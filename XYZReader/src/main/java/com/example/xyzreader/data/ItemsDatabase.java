@@ -6,11 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import static com.example.xyzreader.data.ItemsProvider.Tables;
 
-public class ItemsDatabase extends SQLiteOpenHelper {
+class ItemsDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "xyzreader.db";
     private static final int DATABASE_VERSION = 2;
 
-    public ItemsDatabase(Context context) {
+    ItemsDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -26,7 +26,7 @@ public class ItemsDatabase extends SQLiteOpenHelper {
                 + ItemsContract.ItemsColumns.PHOTO_URL + " TEXT NOT NULL,"
                 + ItemsContract.ItemsColumns.ASPECT_RATIO + " REAL NOT NULL DEFAULT 1.5,"
                 + ItemsContract.ItemsColumns.PUBLISHED_DATE + " TEXT NOT NULL"
-                + ")" );
+                + ")");
     }
 
     @Override
