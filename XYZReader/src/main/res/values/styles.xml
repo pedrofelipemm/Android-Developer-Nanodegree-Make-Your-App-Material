@@ -25,7 +25,9 @@
     </style>
 
     <style name="Theme.Bacon.Detail" parent="Theme.Bacon">
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorPrimary">@color/colorPrimaryDetail</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDetail</item>
+        <item name="colorAccent">@color/colorAccentDetail</item>
     </style>
 
     <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
@@ -40,6 +42,10 @@
         <item name="layout_scrollFlags">scroll|snap</item>
         <item name="expandedTitleMarginEnd">@dimen/collapsingToolbarTitleMarginEnd</item>
         <item name="expandedTitleMarginStart">@dimen/collapsingToolbarTitleMarginStart</item>
+    </style>
+
+    <style name="collapsingToolbar.Detail" parent="collapsingToolbar">
+        <item name="android:layout_height">@dimen/collapsingToolbarHeight</item>
     </style>
 
 </resources>

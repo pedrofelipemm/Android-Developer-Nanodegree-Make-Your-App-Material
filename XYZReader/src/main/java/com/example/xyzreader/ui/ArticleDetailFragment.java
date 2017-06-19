@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
 import android.text.Html;
@@ -16,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
@@ -53,6 +57,12 @@ public class ArticleDetailFragment extends Fragment implements LoaderManager.Loa
 
     @BindView(R.id.share_fab)
     FloatingActionButton mShareFab;
+
+    @BindView(R.id.progressbar)
+    ProgressBar mProgressBar;
+
+    @BindView(R.id.appBar)
+    AppBarLayout mAppBarLayout;
 
     private Context mContext;
 
@@ -103,6 +113,17 @@ public class ArticleDetailFragment extends Fragment implements LoaderManager.Loa
 
         ButterKnife.bind(this, rootView);
 
+        mAppBarLayout.addOnOffsetChangedListener(new OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset > (mAppBarLayout.getHeight() * -0.75)) {
+                    mShareFab.show();
+                } else {
+                    mShareFab.hide();
+                }
+            }
+        });
+
         return rootView;
     }
 
@@ -123,7 +144,7 @@ public class ArticleDetailFragment extends Fragment implements LoaderManager.Loa
                             publishedDate.getTime(),
                             System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                             DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + " by <font color='#ffffff'>"
+                            + "<br/> by <font color='#ffffff'>"
                             + cursor.getString(ArticleLoader.Query.AUTHOR)
                             + "</font>"));
 
@@ -136,10 +157,6 @@ public class ArticleDetailFragment extends Fragment implements LoaderManager.Loa
                             + "</font>"));
 
         }
-
-        // noinspection deprecation
-        mBodyView.setText(Html.fromHtml(
-                cursor.getString(ArticleLoader.Query.BODY).replaceAll("(\r\n|\n)", "<br " + "/>")));
 
         Picasso.with(mContext)
                 .load(cursor.getString(ArticleLoader.Query.PHOTO_URL))
@@ -155,7 +172,27 @@ public class ArticleDetailFragment extends Fragment implements LoaderManager.Loa
             }
         });
 
+        //noinspection deprecation
+        new AsyncTask<CharSequence, Void, CharSequence>() {
+            @Override
+            protected void onPreExecute() {
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected CharSequence doInBackground(CharSequence... params) {
+                return params[0];
+            }
+
+            @Override
+            protected void onPostExecute(CharSequence text) {
+                mBodyView.setText(text);
+                mProgressBar.setVisibility(View.INVISIBLE);
+
+            }
+        }.execute(Html.fromHtml(cursor.getString(ArticleLoader.Query.BODY)));
     }
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {

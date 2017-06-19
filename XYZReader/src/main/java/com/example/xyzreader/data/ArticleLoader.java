@@ -12,6 +12,10 @@ public class ArticleLoader extends CursorLoader {
         return new ArticleLoader(context, ItemsContract.Items.buildDirUri());
     }
 
+    public static ArticleLoader newAllArticlesInstanceThin(Context context) {
+        return new ArticleLoader(context, ItemsContract.Items.buildDirUri(), Query.PROJECTION_THIN);
+    }
+
     public static ArticleLoader newInstanceForItemId(Context context, long itemId) {
         return new ArticleLoader(context, ItemsContract.Items.buildItemUri(itemId));
     }
@@ -20,7 +24,21 @@ public class ArticleLoader extends CursorLoader {
         super(context, uri, Query.PROJECTION, null, null, ItemsContract.Items.DEFAULT_SORT);
     }
 
+    private ArticleLoader(Context context, Uri uri, String[] projection) {
+        super(context, uri, projection, null, null, ItemsContract.Items.DEFAULT_SORT);
+    }
+
     public interface Query {
+        String[] PROJECTION_THIN = {
+                ItemsContract.Items._ID,
+                ItemsContract.Items.TITLE,
+                ItemsContract.Items.PUBLISHED_DATE,
+                ItemsContract.Items.AUTHOR,
+                ItemsContract.Items.THUMB_URL,
+                ItemsContract.Items.PHOTO_URL,
+                ItemsContract.Items.ASPECT_RATIO
+        };
+
         String[] PROJECTION = {
                 ItemsContract.Items._ID,
                 ItemsContract.Items.TITLE,
@@ -29,7 +47,7 @@ public class ArticleLoader extends CursorLoader {
                 ItemsContract.Items.THUMB_URL,
                 ItemsContract.Items.PHOTO_URL,
                 ItemsContract.Items.ASPECT_RATIO,
-                ItemsContract.Items.BODY,
+                ItemsContract.Items.BODY
         };
 
         int _ID = 0;

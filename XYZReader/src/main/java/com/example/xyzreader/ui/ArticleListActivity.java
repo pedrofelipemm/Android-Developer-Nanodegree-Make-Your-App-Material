@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,7 +24,7 @@ import android.widget.TextView;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
-import com.example.xyzreader.data.ItemsContract;
+import com.example.xyzreader.data.ItemsContract.Items;
 import com.example.xyzreader.data.UpdaterService;
 import com.example.xyzreader.utils.DateUtil;
 import com.squareup.picasso.Picasso;
@@ -103,7 +104,7 @@ public class ArticleListActivity extends AppCompatActivity implements LoaderMana
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return ArticleLoader.newAllArticlesInstance(this);
+        return ArticleLoader.newAllArticlesInstanceThin(this);
     }
 
     @Override
@@ -142,8 +143,10 @@ public class ArticleListActivity extends AppCompatActivity implements LoaderMana
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+
+                    Uri uri = Items.buildItemUri(getItemId(vh.getAdapterPosition()));
+
+                    startActivity(new Intent(Intent.ACTION_VIEW, uri));
                 }
             });
             return vh;

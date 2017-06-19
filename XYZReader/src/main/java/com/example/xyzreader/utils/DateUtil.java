@@ -1,7 +1,5 @@
 package com.example.xyzreader.utils;
 
-import android.util.Log;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,8 +8,6 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class DateUtil {
-
-    private static final String TAG = DateUtil.class.getName();
 
     private static final SimpleDateFormat dateFormatUS = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss", Locale.US);
     private static final DateFormat dateFormatDefault = SimpleDateFormat.getDateInstance();
@@ -29,7 +25,6 @@ public class DateUtil {
         try {
             return dateFormatDefault.parse(date);
         } catch (ParseException e) {
-            Log.d(TAG, e.getMessage(), e);
             return defaultDate;
         }
     }
@@ -42,7 +37,6 @@ public class DateUtil {
         try {
             return dateFormatUS.parse(date);
         } catch (ParseException e) {
-            Log.d(TAG, e.getMessage(), e);
             return defaultDate;
         }
     }

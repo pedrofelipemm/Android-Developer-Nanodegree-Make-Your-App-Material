@@ -1,0 +1,14 @@
+<resources>
+    <!--<dimen name="detail_inner_horiz_margin">64dp</dimen>-->
+
+    <dimen name="detail_photo_height">224dp</dimen>
+    <dimen name="detail_inner_horiz_margin">104dp</dimen>
+
+    <dimen name="detailArticleAppbarHeight">48dp</dimen>
+
+    <dimen name="collapsingToolbarHeight">200dp</dimen>
+    <dimen name="article_body">32dp</dimen>
+
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="cardview_overlap">100dp</dimen>
+</resources>

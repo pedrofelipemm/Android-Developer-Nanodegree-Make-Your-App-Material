@@ -63,7 +63,7 @@ public class UpdaterService extends IntentService {
                 values.put(ItemsContract.Items.SERVER_ID, object.getString("id"));
                 values.put(ItemsContract.Items.AUTHOR, object.getString("author"));
                 values.put(ItemsContract.Items.TITLE, object.getString("title"));
-                values.put(ItemsContract.Items.BODY, object.getString("body"));
+                values.put(ItemsContract.Items.BODY, formatBody(object.getString("body")));
                 values.put(ItemsContract.Items.THUMB_URL, object.getString("thumb"));
                 values.put(ItemsContract.Items.PHOTO_URL, object.getString("photo"));
                 values.put(ItemsContract.Items.ASPECT_RATIO, object.getString("aspect_ratio"));
@@ -78,5 +78,15 @@ public class UpdaterService extends IntentService {
         }
 
         sendStickyBroadcast(new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, false));
+    }
+
+    private String formatBody(String text) {
+        String[] split = text.replaceAll("(\r\n|\n)", "<br />").split("<br />");
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < 30; i++) {
+            builder.append(split[i]).append("<br />");
+        }
+        builder.append("<br />").append("To be continued...");
+        return builder.toString();
     }
 }

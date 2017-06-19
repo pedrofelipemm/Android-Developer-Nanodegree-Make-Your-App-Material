@@ -21,6 +21,10 @@
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#607D8B</color>
 
+    <color name="colorPrimaryDetail">#607D8B</color>
+    <color name="colorPrimaryDarkDetail">#455A64</color>
+    <color name="colorAccentDetail">#FF5252</color>
+
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
 
