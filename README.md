@@ -2,7 +2,7 @@
 
 ## App Activities
 
-<img width="45%" src="https://user-images.githubusercontent.com/2250757/27266077-2fe6c856-5474-11e7-8ee8-9816613705ac.png" /><img width="45%" src="https://user-images.githubusercontent.com/2250757/27266080-2ff87902-5474-11e7-9968-5276ec1341ed.png" />
+<img width="45%" hspace="20" src="https://user-images.githubusercontent.com/2250757/27266077-2fe6c856-5474-11e7-8ee8-9816613705ac.png" /><img width="45%" src="https://user-images.githubusercontent.com/2250757/27266080-2ff87902-5474-11e7-9968-5276ec1341ed.png" />
 
 <img width="45%" src="https://user-images.githubusercontent.com/2250757/27266078-2fed834e-5474-11e7-985c-e4a1d0f414c6.png" /> <img width="45%" src="https://user-images.githubusercontent.com/2250757/27266079-2ff3ebd0-5474-11e7-869c-04b200744ca5.png" />
 
