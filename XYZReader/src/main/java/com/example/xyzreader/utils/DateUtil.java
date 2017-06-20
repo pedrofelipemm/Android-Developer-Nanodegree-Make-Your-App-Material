@@ -1,6 +1,5 @@
 package com.example.xyzreader.utils;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +9,7 @@ import java.util.Locale;
 public class DateUtil {
 
     private static final SimpleDateFormat dateFormatUS = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss", Locale.US);
-    private static final DateFormat dateFormatDefault = SimpleDateFormat.getDateInstance();
+    private static final SimpleDateFormat dateFormatDefault = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
 
     public static final GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
 

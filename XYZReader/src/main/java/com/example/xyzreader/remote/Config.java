@@ -9,7 +9,7 @@ class Config {
 
     private static String TAG = Config.class.toString();
 
-    private static final String STRING_URL = "https://go.udacity.com/xyz-reader-json";
+    private static final String STRING_URL = "https://raw.githubusercontent.com/TNTest/xyzreader/master/data.json";
 
     static final URL BASE_URL;
 
